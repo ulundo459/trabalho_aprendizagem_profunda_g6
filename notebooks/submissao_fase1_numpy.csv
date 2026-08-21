@@ -1,0 +1,5 @@
+ID,prediction,probability_ai,label
+SCI_01_BIO_HUMAN,1,0.5591,ai
+SCI_02_MED_AI,0,0.4519,human
+SCI_03_PHYS_HUMAN,1,0.5332,ai
+SCI_04_ENG_AI,0,0.267,human
