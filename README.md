@@ -18,7 +18,7 @@
 
 ---
 
-## 📌 Visão Geral do Projeto
+## Visão Geral do Projeto
 
 Este repositório contém a solução integral desenvolvida no âmbito do trabalho prático da unidade curricular de **Aprendizagem Profunda**. O objetivo central é o desenvolvimento e avaliação de modelos de classificação binária capazes de discriminar textos em inglês escritos por humanos de textos gerados por Modelos de Linguagem de Grande Escala (LLMs), circunscritos ao domínio das **Ciências Naturais e Médicas** (Biologia, Saúde, Química, Física, Matemática e Engenharia) com restrição estrita de comprimento (**100 a 120 palavras**).
 
@@ -26,7 +26,7 @@ Todos os artefactos, modelos pré-treinados, relatórios e pipelines de inferên
 
 ---
 
-## 🚀 Guia Rápido para o Docente (Avaliação e Submissões)
+## Guia Rápido para o Docente (Avaliação e Submissões)
 
 Para avaliar novos dados ou inspecionar as submissões sem necessidade de novo treino:
 
@@ -49,7 +49,7 @@ Os ficheiros prontos para submissão (gerados sobre o conjunto de validação si
 
 ---
 
-## 📑 Estrutura do Repositório
+## Estrutura do Repositório
 
 ```text
 nosso_trabalho_ap_v_final_v2/
@@ -110,21 +110,21 @@ nosso_trabalho_ap_v_final_v2/
 
 ---
 
-## 🏆 Tabela de Benchmark Comparativo (Resultados Obtidos)
+## Tabela de Benchmark Comparativo (Resultados Obtidos)
 
 Avaliação realizada no conjunto de teste independente (`data/test_clean.csv`):
 
 | Rank | Modelo | Framework / Abordagem | Exatidão | F1-Score | Precisão | Recall | ROC-AUC | Latência / Amostra |
 | :---: | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| 🥇 **#1** | **PyTorch BiLSTM (Embeddings)** | PyTorch | **69.23%** | **66.67%** | **66.67%** | **66.67%** | **0.8333** | 8.96 ms |
-| 🥈 **#2** | **PyTorch Tabular DNN (TF-IDF)** | PyTorch | 53.85% | 62.50% | 50.00% | **83.33%** | 0.8095 | 12.82 ms |
-| 🥉 **#3** | **PyTorch Transformer Encoder** | PyTorch | 38.46% | 50.00% | 40.00% | 66.67% | 0.6190 | 8.97 ms |
+| **#1** | **PyTorch BiLSTM (Embeddings)** | PyTorch | **69.23%** | **66.67%** | **66.67%** | **66.67%** | **0.8333** | 8.96 ms |
+| **#2** | **PyTorch Tabular DNN (TF-IDF)** | PyTorch | 53.85% | 62.50% | 50.00% | **83.33%** | 0.8095 | 12.82 ms |
+| **#3** | **PyTorch Transformer Encoder** | PyTorch | 38.46% | 50.00% | 40.00% | 66.67% | 0.6190 | 8.97 ms |
 | **#4** | **NumPy Logistic Reg (Baseline)** | NumPy Puro (de raiz) | 46.15% | 36.36% | 40.00% | 33.33% | 0.4286 | 2.43 ms |
 | **#5** | **NumPy DNN / MLP** | NumPy Puro (de raiz) | 38.46% | 33.33% | 33.33% | 33.33% | 0.4286 | **1.57 ms** |
 
 ---
 
-## 🛠️ Como Executar as Tarefas Localmente
+## Como Executar as Tarefas Localmente
 
 ### 1. Pré-requisitos e Dependências
 
@@ -168,7 +168,7 @@ pip install torch numpy pandas scikit-learn matplotlib seaborn
 
 ---
 
-## 📄 Relatório Final
+## Relatório Final
 
 O artigo científico completo que sintetiza todo o trabalho desenvolvido, fundamentação teórica, análise de erros e conclusões está disponível em:
 
@@ -177,7 +177,7 @@ O artigo científico completo que sintetiza todo o trabalho desenvolvido, fundam
 
 ---
 
-## 👥 Autores — Grupo nº 6
+## Autores — Grupo nº 6
 
 - **Estanislau da Fonseca**
 - **Maria da Conceição**
