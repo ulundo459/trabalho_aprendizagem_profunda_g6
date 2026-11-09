@@ -10,7 +10,6 @@
 ### **Grupo de Trabalho nº 6**
 
 **Integrantes do Grupo:**
-
 - **Estanislau da Fonseca**
 - **Maria da Conceição**
 - **Maurício Piquito**
@@ -26,26 +25,27 @@ Todos os artefactos, modelos pré-treinados, relatórios e pipelines de inferên
 
 ---
 
-## Guia Rápido para o Docente (Avaliação e Submissões)
+## Submissão Oficial (Pasta `Submissao1/`)
 
-Para avaliar novos dados ou inspecionar as submissões sem necessidade de novo treino:
+Em estrito cumprimento das instruções da unidade curricular, foram classificados os 100 exemplos de teste disponibilizados em `dataset3_inputs.csv` através dos dois melhores modelos apurados no benchmark do **Grupo 6**.
 
-### Opção 1: Notebook Interativo de Submissão (Recomendado)
+Os resultados e o código utilizado encontram-se na pasta [`Submissao1/`](Submissao1/):
 
-1. Abrir o notebook [`notebooks/tarefa4_submissao_docente.ipynb`](notebooks/tarefa4_submissao_docente.ipynb).
-2. Definir o caminho do ficheiro de teste do docente (`.csv` ou `.tsv` com colunas `ID` e `text`).
-3. Executar as células sequencialmente. O pipeline carrega os pesos em `models/` e gera automaticamente as predições.
+1. **1ª Submissão — Modelo 1 (s1):**
+   - **Ficheiro:** [`Submissao1/submissao1-grupo6-s1.csv`](Submissao1/submissao1-grupo6-s1.csv)
+   - **Modelo:** *PyTorch BiLSTM com Embeddings* (Rank #1 no Benchmark Geral)
+   - **Métricas no Conjunto de Teste:** $F_1\text{-Score} = 66.67\%$, $\text{ROC-AUC} = 0.8333$, $\text{Acurácia} = 69.23\%$
+   - **Coluna de Saídas:** `Output` com rótulos estritos `"Human"` ou `"AI"`.
 
-### Opção 2: Ficheiros de Submissão Pré-Gerados
+2. **2ª Submissão — Modelo 2 (s2):**
+   - **Ficheiro:** [`Submissao1/submissao1-grupo6-s2.csv`](Submissao1/submissao1-grupo6-s2.csv)
+   - **Modelo:** *PyTorch Tabular DNN com TF-IDF* (Rank #2 no Benchmark Geral)
+   - **Métricas no Conjunto de Teste:** $F_1\text{-Score} = 62.50\%$, $\text{ROC-AUC} = 0.8095$, $\text{Acurácia} = 53.85\%$
+   - **Coluna de Saídas:** `Output` com rótulos estritos `"Human"` ou `"AI"`.
 
-Os ficheiros prontos para submissão (gerados sobre o conjunto de validação simulado) encontram-se na pasta `notebooks/`:
-
-- **1ª Submissão (Modelo NumPy de Raiz + Modelo PyTorch):**
-  - [`notebooks/submissao_fase1_numpy.csv`](notebooks/submissao_fase1_numpy.csv) — *NumPy Logistic Regression (Baseline)*
-  - [`notebooks/submissao_fase1_pytorch.csv`](notebooks/submissao_fase1_pytorch.csv) — *PyTorch BiLSTM (Embeddings)*
-- **2ª Submissão (Dois Melhores Modelos Globais):**
-  - [`notebooks/submissao_fase2_top1.csv`](notebooks/submissao_fase2_top1.csv) — *TOP 1: PyTorch BiLSTM (F1: 66.67%, ROC-AUC: 0.8333)*
-  - [`notebooks/submissao_fase2_top2.csv`](notebooks/submissao_fase2_top2.csv) — *TOP 2: PyTorch Tabular DNN TF-IDF (F1: 62.50%, ROC-AUC: 0.8095)*
+3. **Código de Geração e Reprodutibilidade:**
+   - **Script Python:** [`Submissao1/gerar_submissao1.py`](Submissao1/gerar_submissao1.py) (script autocontido para regeneração direta via terminal)
+   - **Jupyter Notebook:** [`Submissao1/submissao1_grupo6.ipynb`](Submissao1/submissao1_grupo6.ipynb) (inspeção interativa das predições)
 
 ---
 
@@ -53,36 +53,39 @@ Os ficheiros prontos para submissão (gerados sobre o conjunto de validação si
 
 ```text
 nosso_trabalho_ap_v_final_v2/
-├── README.md                          # Documentação principal e guia de navegação
+├── README.md                          # Documentação principal do projeto
 ├── relatorio_final_artigo.pdf         # Relatório científico final formatado (Artigo completo)
 ├── relatorio_final_artigo.md          # Versão integral em Markdown do artigo científico
 │
+├── Submissao1/                        # Pasta oficial da Submissão 1 do Grupo 6
+│   ├── submissao1-grupo6-s1.csv       # Previsões oficiais do Modelo 1 (PyTorch BiLSTM)
+│   ├── submissao1-grupo6-s2.csv       # Previsões oficiais do Modelo 2 (PyTorch Tabular DNN)
+│   ├── gerar_submissao1.py            # Programa Python usado para gerar as previsões
+│   └── submissao1_grupo6.ipynb        # Notebook interativo de execução da submissão
+│
 ├── data/                              # Datasets brutos, conjuntos limpos e dados de validação
 │   ├── dataset1_inputs.csv            # Textos brutos do primeiro lote de dados
-│   ├── dataset1_outputs.csv           # Rótulos (Human vs AI) do primeiro lote
+│   ├── dataset1_outputs.csv           # Rótulos de referência (Human vs AI) do primeiro lote
 │   ├── dataset2_complete.csv          # Segundo lote de dados consolidado
+│   ├── dataset3_inputs.csv            # Conjunto de 100 exemplos para a Submissão 1
 │   ├── train_clean.csv                # Conjunto de treino limpo e estratificado (80%)
 │   ├── val_clean.csv                  # Conjunto de validação balanceado (10%)
 │   ├── test_clean.csv                 # Conjunto de teste independente não-visto (10%)
 │   └── simulated_teacher_validation.csv # Amostra para validação do pipeline do docente
 │
 ├── models/                            # Pesos e pré-processadores serializados
-│   ├── best_numpy_lr.pkl              # Pesos da Regressão Logística (NumPy de raiz)
-│   ├── best_numpy_dnn.pkl             # Pesos da Rede Neuronal Profunda / MLP (NumPy de raiz)
 │   ├── best_pytorch_bilstm.pt         # Pesos da Bidirectional LSTM (PyTorch) — TOP #1 Global
 │   ├── best_pytorch_dnn.pt            # Pesos da Tabular DNN TF-IDF (PyTorch) — TOP #2 Global
 │   ├── best_pytorch_transformer.pt    # Pesos do Transformer Encoder (PyTorch)
+│   ├── best_numpy_lr.pkl              # Pesos da Regressão Logística (NumPy de raiz)
+│   ├── best_numpy_dnn.pkl             # Pesos da Rede Neuronal Profunda / MLP (NumPy de raiz)
 │   ├── tfidf_vectorizer.pkl           # Vetorizador TF-IDF ajustado
 │   └── simple_tokenizer.pkl           # Tokenizador e vocabulário sequencial
 │
 ├── notebooks/                         # Notebooks de experimentação, inspeção e submissão
-│   ├── tarefa4_submissao_docente.ipynb# Notebook principal de submissão e inferência do docente
-│   ├── tarefa3_pytorch.ipynb          # Treino, ajuste de hiperparâmetros e gráficos em PyTorch
-│   ├── inspecionar_modelos.ipynb      # Inspeção interativa dos pesos, vocabulários e matrizes
-│   ├── submissao_fase1_numpy.csv      # Ficheiro de predição Fase 1 (NumPy)
-│   ├── submissao_fase1_pytorch.csv    # Ficheiro de predição Fase 1 (PyTorch)
-│   ├── submissao_fase2_top1.csv       # Ficheiro de predição Fase 2 (TOP 1 Global)
-│   └── submissao_fase2_top2.csv       # Ficheiro de predição Fase 2 (TOP 2 Global)
+│   ├── tarefa4_submissao_docente.ipynb# Notebook principal de inferência do docente
+│   ├── tarefa3_pytorch.ipynb          # Treino e ajuste de hiperparâmetros em PyTorch
+│   └── inspecionar_modelos.ipynb      # Inspeção detalhada de pesos e vocabulários
 │
 ├── results/                           # Gráficos de benchmark, curvas ROC e matrizes de confusão
 │   ├── benchmark_ranking_table.csv    # Tabela consolidada com todas as métricas de avaliação
@@ -91,21 +94,21 @@ nosso_trabalho_ap_v_final_v2/
 │   ├── confusion_matrices_all_models.png # Matrizes de confusão dos 5 modelos
 │   └── latency_vs_accuracy.png        # Análise de trade-off entre Latência (ms) e F1-Score
 │
-├── src/                               # Módulos em Python (Framework de raiz e Inferência)
+├── src/                               # Módulos Python (Framework de raiz e Inferência)
 │   ├── activation.py                  # Sigmoid, ReLU, Tanh, Softmax e respetivas derivadas
 │   ├── data.py                        # Carregamento, batching e pré-processamento de datasets
 │   ├── layers.py                      # Camada DenseLayer com forward e backward pass manuais
-│   ├── losses.py                      # Funções de perda (Binary Cross-Entropy e MSE) e gradientes
+│   ├── losses.py                      # Binary Cross-Entropy, MSE e respetivos gradientes
 │   ├── metrics.py                     # Cálculo manual de Accuracy, Precision, Recall e F1
-│   ├── neuralnetwork.py               # Classe NeuralNetwork em NumPy puro com fit(), predict(), evaluate()
+│   ├── neuralnetwork.py               # Classe NeuralNetwork em NumPy puro
 │   ├── optimizer.py                   # Otimizadores manuais (SGD com Momentum e Adam)
-│   └── inference.py                   # Motor unificado ModelInferenceEngine para execução rápida
+│   └── inference.py                   # Motor unificado ModelInferenceEngine para inferência
 │
-├── tarefa1_construcao_data.py         # Tarefa 1: Script de curadoria, limpeza e divisão do dataset
+├── tarefa1_construcao_data.py         # Tarefa 1: Curadoria, limpeza e divisão estratificada
 ├── tarefa2_numpay.py                  # Tarefa 2: Treino e avaliação dos modelos de raiz em NumPy
-├── tarefa3_pytorch.py                 # Tarefa 3: Treino e avaliação dos modelos de Deep Learning em PyTorch
-├── tarefa4_avaliacao_modelos.py       # Tarefa 4: Benchmark independente, métricas e gráficos comparativos
-└── inspecionar_modelos.py             # Script utilitário de diagnóstico e inspeção de artefactos
+├── tarefa3_pytorch.py                 # Tarefa 3: Treino dos modelos Deep Learning em PyTorch
+├── tarefa4_avaliacao_modelos.py       # Tarefa 4: Benchmark independente e curvas comparativas
+└── inspecionar_modelos.py             # Script de diagnóstico e inspeção de artefactos
 ```
 
 ---
@@ -115,7 +118,7 @@ nosso_trabalho_ap_v_final_v2/
 Avaliação realizada no conjunto de teste independente (`data/test_clean.csv`):
 
 | Rank | Modelo | Framework / Abordagem | Exatidão | F1-Score | Precisão | Recall | ROC-AUC | Latência / Amostra |
-| :---: | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| :---: | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | **#1** | **PyTorch BiLSTM (Embeddings)** | PyTorch | **69.23%** | **66.67%** | **66.67%** | **66.67%** | **0.8333** | 8.96 ms |
 | **#2** | **PyTorch Tabular DNN (TF-IDF)** | PyTorch | 53.85% | 62.50% | 50.00% | **83.33%** | 0.8095 | 12.82 ms |
 | **#3** | **PyTorch Transformer Encoder** | PyTorch | 38.46% | 50.00% | 40.00% | 66.67% | 0.6190 | 8.97 ms |
@@ -124,11 +127,23 @@ Avaliação realizada no conjunto de teste independente (`data/test_clean.csv`):
 
 ---
 
-## Como Executar as Tarefas Localmente
+## Como Reproduzir a Submissão 1
+
+Para gerar ou verificar os ficheiros oficiais de submissão através da consola:
+
+```bash
+python Submissao1/gerar_submissao1.py
+```
+
+O script carregará automaticamente os pesos pré-treinados em `models/`, efetuará o pré-processamento dos textos de `dataset3_inputs.csv` e gravará os dois ficheiros CSV (`submissao1-grupo6-s1.csv` e `submissao1-grupo6-s2.csv`) com as predições formatadas estritamente com os rótulos `"Human"` e `"AI"`.
+
+Em alternativa, o notebook interativo [`Submissao1/submissao1_grupo6.ipynb`](Submissao1/submissao1_grupo6.ipynb) pode ser executado célula a célula em ambiente Jupyter ou Google Colab.
+
+---
+
+## Como Executar as Tarefas do Projeto Localmente
 
 ### 1. Pré-requisitos e Dependências
-
-Recomenda-se a utilização de um ambiente virtual Python (3.9+):
 
 ```bash
 pip install torch numpy pandas scikit-learn matplotlib seaborn
@@ -137,31 +152,26 @@ pip install torch numpy pandas scikit-learn matplotlib seaborn
 ### 2. Execução dos Scripts das Tarefas
 
 - **Tarefa 1 — Preparação do Dataset:**
-
   ```bash
   python tarefa1_construcao_data.py
   ```
 
 - **Tarefa 2 — Treino dos Modelos de Raiz em NumPy Puro:**
-
   ```bash
   python tarefa2_numpay.py
   ```
 
 - **Tarefa 3 — Treino dos Modelos Deep Learning em PyTorch:**
-
   ```bash
   python tarefa3_pytorch.py
   ```
 
 - **Tarefa 4 — Benchmark Completo, Curvas ROC e Matrizes de Confusão:**
-
   ```bash
   python tarefa4_avaliacao_modelos.py
   ```
 
 - **Inspeção de Modelos e Diagnóstico:**
-
   ```bash
   python inspecionar_modelos.py
   ```
